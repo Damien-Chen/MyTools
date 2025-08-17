@@ -8,7 +8,9 @@ Usage:
 import argparse
 import sys
 from pathlib import Path
+
 import pikepdf
+
 
 def unlock_pdf(input_path: Path, output_path: Path, password: str):
     # Open using provided password (if empty string, tries without password)
@@ -35,11 +37,20 @@ def unlock_pdf(input_path: Path, output_path: Path, password: str):
     print(f"Unlocked PDF saved to: {output_path}")
     return 0
 
+
 def main():
-    parser = argparse.ArgumentParser(description="Remove password from a PDF (requires correct password).")
+    parser = argparse.ArgumentParser(
+        description="Remove password from a PDF (requires correct password)."
+    )
     parser.add_argument("input", type=Path, help="Encrypted PDF file path")
     parser.add_argument("output", type=Path, help="Output unlocked PDF path")
-    parser.add_argument("--password", "-p", type=str, default="", help="Password of the PDF (user password)")
+    parser.add_argument(
+        "--password",
+        "-p",
+        type=str,
+        default="",
+        help="Password of the PDF (user password)",
+    )
     args = parser.parse_args()
 
     if not args.input.exists():
@@ -48,6 +59,7 @@ def main():
 
     rc = unlock_pdf(args.input, args.output, args.password)
     sys.exit(rc)
+
 
 if __name__ == "__main__":
     main()
