@@ -1,0 +1,41 @@
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+skip_gitignore = true
+# Skipping __init__.py is a common practice
+skip = ["__init__.py"]
+
+[tool.ruff]
+# Same as Black.
+line-length = 88
+# Ruff now supports all rules from pycodestyle, Pyflakes, pyupgrade and more.
+# You can find the full list of supported rules here: https://beta.ruff.rs/docs/rules/
+# We recommend starting with the defaults and then customizing as needed.
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.isort]
+known-first-party = ["my_project"] # Replace with your project's name
